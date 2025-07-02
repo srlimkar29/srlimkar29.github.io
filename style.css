@@ -1,13 +1,92 @@
+/* --- CSS Variables for Light/Dark Mode --- */
+:root {
+    /* Light Mode Defaults */
+    --primary-color: #007bff;
+    --primary-dark-color: #0056b3;
+    --background-body: #f4f7f6;
+    --background-card: #fff;
+    --text-color: #333;
+    --heading-color: #0056b3;
+    --subheading-color: #007bff;
+    --border-color: #eee;
+    --shadow-color: rgba(0,0,0,0.1);
+    --header-background-start: #0056b3;
+    --header-background-end: #007bff;
+    --footer-background: #333;
+    --footer-text-color: #fff;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+    --contact-link-color: #fff;
+    --contact-link-hover-color: #cceeff;
+    --button-bg: #007bff;
+    --button-hover-bg: #0056b3;
+    --button-text: #fff;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    --primary-color: #8bbceb; /* Lighter blue for dark mode primary */
+    --primary-dark-color: #4a8ed0;
+    --background-body: #1a1a1a;
+    --background-card: #2c2c2c;
+    --text-color: #e0e0e0;
+    --heading-color: #8bbceb;
+    --subheading-color: #9bd7ff;
+    --border-color: #444;
+    --shadow-color: rgba(0,0,0,0.4);
+    --header-background-start: #1c3d6e;
+    --header-background-end: #2d5a9d;
+    --footer-background: #0d0d0d;
+    --footer-text-color: #bbb;
+    --link-color: #9bd7ff;
+    --link-hover-color: #6daae3;
+    --contact-link-color: #cceeff;
+    --contact-link-hover-color: #e0f2ff;
+    --button-bg: #4a8ed0;
+    --button-hover-bg: #3a7ec0;
+}
+
+/* Optional: Automatic dark mode based on OS preference */
+@media (prefers-color-scheme: dark) {
+    /* This block applies dark mode styles by default if the OS prefers it,
+       unless the user explicitly toggles to light mode via JS.
+       The JS toggle will add/remove the .dark-mode class which takes precedence. */
+    body:not(.light-mode) { /* Ensure this doesn't conflict if a light-mode class is ever added */
+        --primary-color: #8bbceb;
+        --primary-dark-color: #4a8ed0;
+        --background-body: #1a1a1a;
+        --background-card: #2c2c2c;
+        --text-color: #e0e0e0;
+        --heading-color: #8bbceb;
+        --subheading-color: #9bd7ff;
+        --border-color: #444;
+        --shadow-color: rgba(0,0,0,0.4);
+        --header-background-start: #1c3d6e;
+        --header-background-end: #2d5a9d;
+        --footer-background: #0d0d0d;
+        --footer-text-color: #bbb;
+        --link-color: #9bd7ff;
+        --link-hover-color: #6daae3;
+        --contact-link-color: #cceeff;
+        --contact-link-hover-color: #e0f2ff;
+        --button-bg: #4a8ed0;
+        --button-hover-bg: #3a7ec0;
+    }
+}
+
+
+/* General Body and Container Styles */
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
-    color: #333;
+    background-color: var(--background-body);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .container {
@@ -19,11 +98,11 @@ body {
 
 /* Header Styles */
 header {
-    background: linear-gradient(to right, #0056b3, #007bff);
-    color: #fff;
+    background: linear-gradient(to right, var(--header-background-start), var(--header-background-end));
+    color: var(--footer-text-color); /* Using footer-text-color for header text for consistency */
     padding: 40px 0;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 header h1 {
@@ -49,13 +128,13 @@ header .tagline {
 }
 
 .contact-info a {
-    color: #fff;
+    color: var(--contact-link-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
-    color: #cceeff;
+    color: var(--contact-link-hover-color);
     text-decoration: underline;
 }
 
@@ -70,17 +149,18 @@ main {
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--background-card);
     padding: 30px;
     margin-bottom: 25px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }
 
 .card h2 {
-    color: #0056b3;
+    color: var(--heading-color);
     font-size: 2em;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -94,7 +174,7 @@ main {
 }
 
 .item h3 {
-    color: #007bff;
+    color: var(--subheading-color);
     margin-top: 0;
     margin-bottom: 5px;
     font-size: 1.4em;
@@ -102,7 +182,8 @@ main {
 
 .organization, .location-date {
     font-style: italic;
-    color: #555;
+    color: var(--text-color); /* Adjusted for better dark mode contrast */
+    opacity: 0.8;
     margin-bottom: 5px;
     font-size: 0.95em;
 }
@@ -123,7 +204,7 @@ main {
 }
 
 .technologies strong {
-    color: #0056b3;
+    color: var(--heading-color);
 }
 
 /* Skills Grid */
@@ -134,23 +215,25 @@ main {
 }
 
 .skill-category h4 {
-    color: #007bff;
+    color: var(--subheading-color);
     margin-bottom: 5px;
     font-size: 1.1em;
 }
 
 .skill-category p {
     margin: 0;
-    color: #444;
+    color: var(--text-color);
+    opacity: 0.9;
 }
 
 /* Footer Styles */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--footer-background);
+    color: var(--footer-text-color);
     text-align: center;
     padding: 20px 0;
     margin-top: 30px;
+    box-shadow: 0 -2px 5px var(--shadow-color);
 }
 
 footer p {
@@ -158,6 +241,92 @@ footer p {
     font-size: 0.9em;
     opacity: 0.8;
 }
+
+/* Links within content */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* --- Dark Mode Toggle Button --- */
+#darkModeToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+
+#darkModeToggle:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+}
+
+#darkModeToggle i {
+    pointer-events: none; /* Ensures clicking the button itself works, not just the icon */
+}
+
+/* --- Scroll to Top Button --- */
+#scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Aligned with dark mode toggle */
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    z-index: 999; /* Below dark mode toggle */
+}
+
+#scrollToTopBtn:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+}
+
+/* Adjust position of scroll-to-top button when dark mode toggle is present */
+#scrollToTopBtn {
+    bottom: 75px; /* Adjust if the dark mode toggle is present */
+}
+@media (max-width: 768px) {
+    #darkModeToggle {
+        top: auto;
+        bottom: 20px;
+        right: 75px; /* Move to the left of scroll-to-top on mobile */
+    }
+    #scrollToTopBtn {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
