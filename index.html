@@ -3,172 +3,794 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shubham Limkar - Personal Website</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght=500&display=swap" rel="stylesheet">
+    <title>Shubham Limkar | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Card hover effect */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Section divider */
+        .section-divider {
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+        }
+        
+        .section-divider svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Shubham Limkar</h1>
-            <p class="tagline">MSc Computer Science | Cloud & DevOps Enthusiast</p>
-            <div class="contact-info">
-                <span><i class="fas fa-map-marker-alt"></i> Dublin, Ireland</span>
-                <span><i class="fas fa-phone"></i> +353 (89) 959 0615</span>
-                <span><i class="fas fa-envelope"></i> Shubham.limkar@ucdconnect.ie</span>
-                <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/srlimkar" target="_blank">linkedin.com/in/srlimkar</a></span>
+<body class="bg-gray-50 font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold gradient-text">Shubham Limkar</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition">About</a>
+                    <a href="#experience" class="text-gray-700 hover:text-blue-600 transition">Experience</a>
+                    <a href="#projects" class="text-gray-700 hover:text-blue-600 transition">Projects</a>
+                    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition">Skills</a>
+                    <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </header>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">About</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Projects</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Skills</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    <main class="container">
-        <section id="education" class="card">
-            <h2>Education</h2>
-            <div class="item">
-                <h3>MSc in Computer Science (Negotiated Learning)</h3>
-                <p class="organization">University College Dublin</p>
-                <p class="location-date">Dublin, Ireland | September 2024 - Present</p>
-                <p class="description">Relevant coursework: Cloud Computing, Distributed Systems, Advance Wireless Networking, SQL Programming, Big Data Programming, Data Science in Python, Digital Libraries</p>
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex items-center justify-between">
+                <div class="md:w-1/2 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="gradient-text">Shubham Limkar</span></h1>
+                    <h2 class="text-xl md:text-2xl text-gray-600 mb-6">Cloud Engineer & Computer Science Graduate</h2>
+                    <p class="text-gray-600 mb-8">Passionate about building scalable cloud solutions and distributed systems. Currently pursuing MSc in Computer Science at University College Dublin.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">Get In Touch</a>
+                        <a href="#projects" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-md hover:bg-blue-50 transition">View Projects</a>
+                    </div>
+                </div>
+                <div class="hidden md:block md:w-2/5 mt-10 md:mt-0 animate-fade-in delay-200">
+                    <div class="relative">
+                        <div class="w-64 h-64 bg-blue-200 rounded-full mx-auto"></div>
+                        <div class="absolute -bottom-2 -right-2 bg-white p-4 rounded-lg shadow-md">
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 p-2 rounded-full mr-2">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <span class="text-sm">Dublin, Ireland</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="item">
-                <h3>Bachelor of Engineering (Computer)</h3>
-                <p class="organization">Trinity Academy of Engineering</p>
-                <p class="location-date">Pune, India | June 2019 - June 2022</p>
-                <p class="description">CGPA: 8.55/10</p>
-                <p class="description">Relevant coursework: Data Structures and Algorithm, Object Oriented Programming, Database Management System, Operating Systems, Computer Network, Cloud Computing, Data Analytics, Artificial Intelligence, Machine Learning, Cyber Security, Microprocessors, Embedded System, Software Engineering and Project Management</p>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="experience" class="card">
-            <h2>Experience</h2>
-            <div class="item">
-                <h3>Senior Executive</h3>
-                <p class="organization">_VOIS (Vodafone Intelligent Solutions)</p>
-                <p class="location-date">Pune, India | January 2024 - July 2024</p>
-                <ul>
-                    [cite_start]<li>Utilised a variety of cutting-edge technologies, including AWS, Terraform, Azure DevOps, Datadog, PagerDuty, and more in daily responsibilities. [cite: 22]</li>
-                    [cite_start]<li>Spearheaded challenging automation projects with a focus on reducing costs and streamlining employee workflows while ensuring alignment with organisational core values. [cite: 23]</li>
-                    [cite_start]<li>Oversaw system monitoring and addressed inquiries from UK clients, ensuring timely and effective support. [cite: 24]</li>
-                    [cite_start]<li>Collaborated effectively with cross-functional teams to resolve issues promptly and contributed to two significant projects. [cite: 25]</li>
-                </ul>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">About Me</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 animate-fade-in delay-100">
+                    <h3 class="text-xl font-semibold mb-4">Education</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Education Item 1 -->
+                        <div class="bg-gray-50 p-6 rounded-lg card-hover transition duration-300">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-university text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">University College Dublin</h4>
+                                    <p class="text-gray-600">MSc in Computer Science (Negotiated Learning)</p>
+                                    <p class="text-sm text-gray-500">September 2024 – Present</p>
+                                    <ul class="mt-2 text-gray-600 list-disc list-inside">
+                                        <li>Relevant coursework: Cloud Computing, Distributed Systems, Advance Wireless Networking, SQL Programming, Big Data Programming, Data Science in Python, Digital Libraries</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Education Item 2 -->
+                        <div class="bg-gray-50 p-6 rounded-lg card-hover transition duration-300">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-graduation-cap text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Trinity Academy of Engineering</h4>
+                                    <p class="text-gray-600">Bachelor of Engineering (Computer)</p>
+                                    <p class="text-sm text-gray-500">June 2019 – June 2022</p>
+                                    <ul class="mt-2 text-gray-600 list-disc list-inside">
+                                        <li>CGPA: 8.55 / 10</li>
+                                        <li>Relevant coursework: Data Structures and Algorithm, Object Oriented Programming, Database Management System, Operating Systems, Computer Network, Cloud Computing, Data Analytics, Artificial Intelligence, Machine Learning, Cyber Security, Microprocessors, Embedded System, Software Engineering and Project Management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 animate-fade-in delay-200">
+                    <h3 class="text-xl font-semibold mb-4">Personal Profile</h3>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg mb-6 card-hover transition duration-300">
+                        <p class="text-gray-600 mb-4">I'm a passionate computer science graduate with expertise in cloud computing, distributed systems, and software development. My experience at Vodafone Intelligent Solutions has equipped me with hands-on skills in AWS, Terraform, and DevOps practices.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Cloud Computing</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">AWS</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Terraform</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">DevOps</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mb-4">Additional Information</h3>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg card-hover transition duration-300">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold mb-2">Languages</h4>
+                                <ul class="text-gray-600">
+                                    <li>English (Proficient)</li>
+                                    <li>Hindi (Native)</li>
+                                    <li>Marathi (Native)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-2">Certifications</h4>
+                                <ul class="text-gray-600">
+                                    <li>AWS Solution Architect</li>
+                                    <li>Terraform</li>
+                                    <li>Azure DevOps</li>
+                                    <li>Containers and Docker</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h4 class="font-semibold mb-2">Activities</h4>
+                            <p class="text-gray-600">Volunteered at Brighter Future, an initiative by _VOIS of Change, which contributes to sustainable development and fosters positive social and environmental impacts, where I actively participated in various activities.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="item">
-                <h3>Graduate Engineer Trainee</h3>
-                <p class="organization">_VOIS (Vodafone Intelligent Solutions)</p>
-                <p class="location-date">Pune, India | November 2022 - December 2023</p>
-                <ul>
-                     [cite_start]<li>Utilised a variety of cutting-edge technologies, including AWS, Terraform, Azure DevOps, Datadog, PagerDuty, and more in daily responsibilities. [cite: 22]</li>
-                    [cite_start]<li>Spearheaded challenging automation projects with a focus on reducing costs and streamlining employee workflows while ensuring alignment with organisational core values. [cite: 23]</li>
-                    [cite_start]<li>Oversaw system monitoring and addressed inquiries from UK clients, ensuring timely and effective support. [cite: 24]</li>
-                    [cite_start]<li>Collaborated effectively with cross-functional teams to resolve issues promptly and contributed to two significant projects. [cite: 25]</li>
-                </ul>
-            </div>
-            <div class="item">
-                <h3>Data Research Analyst (Internship)</h3>
-                <p class="organization">Ace Overseas Education Consultants</p>
-                <p class="location-date">Remote | April 2021 - July 2021</p>
-                <ul>
-                    [cite_start]<li>Completed a 3-month internship with experience in various roles, including Data Research Analyst, Email Marketer, Team Leader, and Web Development Intern. [cite: 31]</li>
-                    [cite_start]<li>Collaborated with both technical and marketing teams to execute various operations on a daily basis. [cite: 32]</li>
-                </ul>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="projects" class="card">
-            <h2>Projects</h2>
-            <div class="item">
-                <h3>Designing A Highly Available System</h3>
-                [cite_start]<p class="description">Designed and developed an application to insert timestamps into a database via a curl request, ensuring high availability and redundancy using AWS services. [cite: 35]</p>
-                [cite_start]<p class="technologies"><strong>Technologies:</strong> Amazon EC2, Amazon Lambda, Amazon VPC, Internet Gateway, NAT Gateway, Application Load Balancer, Amazon DynamoDB, Amazon S3, AWS IAM, Security Groups, Amazon CloudWatch [cite: 36]</p>
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Work Experience</h2>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-blue-200 transform -translate-x-1/2"></div>
+                
+                <!-- Experience Items -->
+                <div class="space-y-8">
+                    <!-- Experience 1 -->
+                    <div class="relative md:flex justify-center animate-fade-in delay-100">
+                        <div class="md:w-5/12 md:pr-8 md:text-right">
+                            <h3 class="text-xl font-bold">_VOIS (Vodafone Intelligent Solutions)</h3>
+                            <p class="text-gray-600">Senior Executive</p>
+                            <p class="text-sm text-gray-500">January 2024 – July 2024 | Pune, India</p>
+                        </div>
+                        <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-blue-600 rounded-full"></div>
+                        <div class="md:w-5/12 md:pl-8 mt-4 md:mt-0">
+                            <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                                <ul class="text-gray-600 list-disc list-inside space-y-2">
+                                    <li>Employed at _VOIS, the strategic division of Vodafone Group, I utilised a variety of cutting-edge technologies, including AWS, Terraform, Azure DevOps, Datadog, PagerDuty, and more in my daily responsibilities.</li>
+                                    <li>Spearheaded challenging automation projects with a focus on reducing costs and streamlining employee workflows while ensuring alignment with organisational core values.</li>
+                                    <li>Oversaw system monitoring and addressed inquiries from UK clients, ensuring timely and effective support.</li>
+                                    <li>Collaborated effectively with cross-functional teams to resolve issues promptly and contributed to two significant projects.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div class="relative md:flex justify-center animate-fade-in delay-200">
+                        <div class="md:w-5/12 md:pr-8 md:text-right order-1">
+                            <h3 class="text-xl font-bold">_VOIS (Vodafone Intelligent Solutions)</h3>
+                            <p class="text-gray-600">Graduate Engineer Trainee</p>
+                            <p class="text-sm text-gray-500">November 2022 – December 2023 | Pune, India</p>
+                        </div>
+                        <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-blue-600 rounded-full"></div>
+                        <div class="md:w-5/12 md:pl-8 mt-4 md:mt-0 order-2">
+                            <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                                <p class="text-gray-600">Continued responsibilities from Senior Executive role with additional training and development opportunities.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience 3 -->
+                    <div class="relative md:flex justify-center animate-fade-in delay-300">
+                        <div class="md:w-5/12 md:pr-8 md:text-right">
+                            <h3 class="text-xl font-bold">Ace Overseas Education Consultants</h3>
+                            <p class="text-gray-600">Data Research Analyst</p>
+                            <p class="text-sm text-gray-500">April 2021 – July 2021 | Remote</p>
+                        </div>
+                        <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-blue-600 rounded-full"></div>
+                        <div class="md:w-5/12 md:pl-8 mt-4 md:mt-0">
+                            <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                                <ul class="text-gray-600 list-disc list-inside space-y-2">
+                                    <li>Completed a 3-month internship with experience in various roles, including Data Research Analyst, Email Marketer, Team Leader, and Web Development Intern.</li>
+                                    <li>Collaborated with both technical and marketing teams to execute various operations on a daily basis.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="item">
-                <h3>Data Processing & Analysis Pipeline</h3>
-                [cite_start]<p class="description">Built a data extraction and processing tool that cleans and transforms raw datasets, with analysis performed using Python Pandas. [cite: 38]</p>
-                [cite_start]<p class="technologies"><strong>Technologies:</strong> Python, Pandas [cite: 39]</p>
-            </div>
-            <div class="item">
-                <h3>Flask-Based Distributed System</h3>
-                [cite_start]<p class="description">Designed and developed a distributed system using Flask for real-time monitoring, containerized with Docker for scalable deployment. [cite: 41]</p>
-                [cite_start]<p class="technologies"><strong>Technologies:</strong> Python, Flask, Docker [cite: 42]</p>
-            </div>
-            <div class="item">
-                <h3>Disaster Management in Crisis Situation</h3>
-                [cite_start]<p class="description">Developed a web application for a final year engineering project, enabling the display and collection of disaster-related information, and facilitating the delivery of humanitarian services to affected individuals. [cite: 44]</p>
-                [cite_start]<p class="technologies"><strong>Technologies:</strong> JavaScript, ReactJS, NodeJS and MongoDB [cite: 45]</p>
-            </div>
-            <div class="item">
-                <h3>Web Application for Tourism</h3>
-                [cite_start]<p class="description">Built a web application to display and collect information on forts located in Maharashtra State with the goal of enhancing understanding of their historical and cultural characteristics. [cite: 47]</p>
-                [cite_start]<p class="technologies"><strong>Technologies:</strong> HTML, CSS, SQL [cite: 48]</p>
-            </div>
-            <div class="item">
-                <h3>Optimising Data Processing with ETL on Oracle Database</h3>
-                [cite_start]<p class="description">Developed ETL processes to extract data from various CSV files, transform it to meet business requirements, and load it into target databases, while proactively resolving data quality issues during the extraction and loading process. [cite: 50]</p>
-                [cite_start]<p class="technologies"><strong>Technologies:</strong> Oracle SQL, Unix Shell Scripting [cite: 51]</p>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="skills" class="card">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4>Software Development:</h4>
-                    [cite_start]<p>Python, C, C++ [cite: 53]</p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Featured Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover transition duration-300 animate-fade-in delay-100">
+                    <div class="h-48 bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-server text-5xl text-blue-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Highly Available System</h3>
+                        <p class="text-gray-600 mb-4">Designed and developed an application to insert timestamps into a database via a curl request, ensuring high availability and redundancy using AWS services.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">AWS</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs">EC2</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Lambda</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">DynamoDB</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h4>Cloud Platforms:</h4>
-                    [cite_start]<p>AWS (EC2, Lambda, S3), GCP [cite: 54]</p>
+                
+                <!-- Project 2 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover transition duration-300 animate-fade-in delay-200">
+                    <div class="h-48 bg-gradient-to-r from-green-100 to-teal-100 flex items-center justify-center">
+                        <i class="fas fa-database text-5xl text-green-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Data Processing Pipeline</h3>
+                        <p class="text-gray-600 mb-4">Built a data extraction and processing tool that cleans and transforms raw datasets, with analysis performed using Python Pandas.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Python</span>
+                            <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Pandas</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">ETL</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h4>Containerization & Orchestration:</h4>
-                    [cite_start]<p>Docker, Kubernetes [cite: 55]</p>
+                
+                <!-- Project 3 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover transition duration-300 animate-fade-in delay-300">
+                    <div class="h-48 bg-gradient-to-r from-purple-100 to-pink-100 flex items-center justify-center">
+                        <i class="fas fa-network-wired text-5xl text-purple-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Flask Distributed System</h3>
+                        <p class="text-gray-600 mb-4">Designed and developed a distributed system using Flask for real-time monitoring, containerized with Docker for scalable deployment.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Flask</span>
+                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Docker</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Python</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h4>DevOps & Infrastructure as Code:</h4>
-                    [cite_start]<p>Terraform, Azure DevOps [cite: 56]</p>
+                
+                <!-- Project 4 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover transition duration-300 animate-fade-in delay-100">
+                    <div class="h-48 bg-gradient-to-r from-yellow-100 to-orange-100 flex items-center justify-center">
+                        <i class="fas fa-exclamation-triangle text-5xl text-yellow-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Disaster Management System</h3>
+                        <p class="text-gray-600 mb-4">Developed a web application for a final year engineering project, enabling the display and collection of disaster-related information.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">ReactJS</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">NodeJS</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">MongoDB</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h4>Monitoring & Observability:</h4>
-                    [cite_start]<p>Datadog, PagerDuty, Prometheus, Grafana [cite: 57]</p>
+                
+                <!-- Project 5 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover transition duration-300 animate-fade-in delay-200">
+                    <div class="h-48 bg-gradient-to-r from-red-100 to-pink-100 flex items-center justify-center">
+                        <i class="fas fa-map-marked-alt text-5xl text-red-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Tourism Web Application</h3>
+                        <p class="text-gray-600 mb-4">Built a web application to display and collect information on forts located in Maharashtra State to enhance understanding of their historical characteristics.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">HTML</span>
+                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">CSS</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">SQL</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h4>Databases:</h4>
-                    [cite_start]<p>SQL (PostgreSQL, MySQL, Oracle), NoSQL (MongoDB) [cite: 58]</p>
-                </div>
-                <div class="skill-category">
-                    <h4>APIs & Data Formats:</h4>
-                    [cite_start]<p>HTTP, REST APIs, JSON [cite: 59]</p>
-                </div>
-                <div class="skill-category">
-                    <h4>Version Control:</h4>
-                    [cite_start]<p>Git [cite: 60]</p>
+                
+                <!-- Project 6 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover transition duration-300 animate-fade-in delay-300">
+                    <div class="h-48 bg-gradient-to-r from-indigo-100 to-blue-100 flex items-center justify-center">
+                        <i class="fas fa-database text-5xl text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">ETL on Oracle Database</h3>
+                        <p class="text-gray-600 mb-4">Developed ETL processes to extract data from various CSV files, transform it to meet business requirements, and load it into target databases.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs">Oracle SQL</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Unix</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Shell Scripting</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="additional-info" class="card">
-            <h2>Additional Information</h2>
-            <div class="item">
-                <h3>Languages:</h3>
-                [cite_start]<p>Proficient in English, Hindi & Marathi [cite: 70]</p>
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Technical Skills</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Software Development -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-code text-blue-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Software Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">C</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">C++</span>
+                    </div>
+                </div>
+                
+                <!-- Cloud Platforms -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-cloud text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Cloud Platforms</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">AWS (EC2, Lambda, S3)</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">GCP</span>
+                    </div>
+                </div>
+                
+                <!-- Containerization & Orchestration -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-2 rounded-full mr-3">
+                            <i class="fab fa-docker text-purple-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Containerization</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Docker</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Kubernetes</span>
+                    </div>
+                </div>
+                
+                <!-- DevOps & IaC -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-400">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-code-branch text-green-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">DevOps & IaC</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Terraform</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Azure DevOps</span>
+                    </div>
+                </div>
+                
+                <!-- Monitoring & Observability -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-chart-line text-yellow-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Monitoring</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Datadog</span>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">PagerDuty</span>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Prometheus</span>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Grafana</span>
+                    </div>
+                </div>
+                
+                <!-- Databases -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-database text-red-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Databases</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">SQL (PostgreSQL, MySQL, Oracle)</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">NoSQL (MongoDB)</span>
+                    </div>
+                </div>
+                
+                <!-- APIs & Data Formats -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-pink-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-exchange-alt text-pink-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">APIs & Data</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">HTTP</span>
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">REST APIs</span>
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">JSON</span>
+                    </div>
+                </div>
+                
+                <!-- Version Control -->
+                <div class="bg-white p-6 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in delay-400">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gray-100 p-2 rounded-full mr-3">
+                            <i class="fab fa-git-alt text-gray-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Version Control</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Git</span>
+                    </div>
+                </div>
             </div>
-            <div class="item">
-                <h3>Certifications:</h3>
-                [cite_start]<p>AWS Solution Architect (A Cloud Guru), Terraform (A Cloud Guru), Azure DevOps (LinkedIn), Containers and Docker (A Cloud Guru) [cite: 71]</p>
+            
+            <div class="mt-12 bg-white p-8 rounded-lg shadow-sm card-hover transition duration-300 animate-fade-in">
+                <h3 class="text-xl font-semibold mb-4 text-center">Strengths</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-lightbulb text-blue-600"></i>
+                        </div>
+                        <span>Strong problem-solving skills</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-users text-indigo-600"></i>
+                        </div>
+                        <span>Effective collaboration with teams</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-purple-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-user text-purple-600"></i>
+                        </div>
+                        <span>Ability to work independently</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-tasks text-green-600"></i>
+                        </div>
+                        <span>Dedication to challenging tasks</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-search text-yellow-600"></i>
+                        </div>
+                        <span>Strong attention to detail</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-red-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-bolt text-red-600"></i>
+                        </div>
+                        <span>Quick learner and adaptable</span>
+                    </div>
+                </div>
             </div>
-            <div class="item">
-                <h3>Activities:</h3>
-                [cite_start]<p>Volunteered at Brighter Future, an initiative by_VOIS of Change, which contributes to sustainable development and fosters positive social and environmental impacts, where I actively participated in various activities. [cite: 72, 73]</p>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Shubham Limkar. All rights reserved.</p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Get In Touch</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 animate-fade-in delay-100">
+                    <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Location</h4>
+                                    <p>Dublin, Ireland</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p>+353 (89) 959 0615</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p>Shubham.limkar@ucdconnect.ie</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white bg-opacity-20 p-3 rounded-full mr-4">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">LinkedIn</h4>
+                                    <a href="https://www.linkedin.com/in/srlimkar" target="_blank" class="hover:underline">www.linkedin.com/in/srlimkar</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-semibold mb-4">Connect With Me</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-opacity-30 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 animate-fade-in delay-200">
+                    <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold mb-6">Send Me a Message</h3>
+                        
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <label for="name" class="block mb-1">Name</label>
+                                <input type="text" id="name" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70" placeholder="Your name">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block mb-1">Email</label>
+                                <input type="email" id="email" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70" placeholder="Your email">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block mb-1">Subject</label>
+                                <input type="text" id="subject" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70" placeholder="Subject">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block mb-1">Message</label>
+                                <textarea id="message" rows="4" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70" placeholder="Your message"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-xl font-bold gradient-text">Shubham Limkar</a>
+                    <p class="text-gray-400 mt-1">Cloud Engineer & Computer Science Graduate</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
+                    <a href="#experience" class="text-gray-400 hover:text-white transition">Experience</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+                <p>&copy; 2024 Shubham Limkar. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-blue-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For this demo, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been sent. I'll get back to you soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add animation class when elements come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('opacity-100');
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 </html>
